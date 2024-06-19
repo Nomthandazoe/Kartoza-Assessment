@@ -1,13 +1,12 @@
 import os
 from osgeo import gdal, ogr
 
-# Set the environment variable to enable DLL path for GDAL on Python >= 3.8
+# Setting the environment variable to enable DLL path for GDAL on Python >= 3.8
 os.environ['USE_PATH_FOR_GDAL_PYTHON'] = 'YES'
 
 
 def remove_spikes(polygon, angle_threshold, distance_threshold):
     # Logic to remove spikes from the polygon
-    # Example: Simplify using a tolerance
     polygon.SimplifyPreserveTopology(angle_threshold, distance_threshold)
 
 
@@ -24,8 +23,7 @@ def main():
         print(f"Failed to open GeoPackage file: {input_file}")
         return 1
 
-    # Assume there is only one layer in the GeoPackage file
-    polygon_layer = file.GetLayer(0)  # Corrected index to 0 (first layer)
+    polygon_layer = file.GetLayer(1)  
 
     # Create an output GeoPackage dataset
     driver = gdal.GetDriverByName("GPKG")
